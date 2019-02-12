@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = findViewById(R.id.liste_simples);
+        ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             stringList.add("Element " + i);

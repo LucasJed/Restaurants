@@ -41,12 +41,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView restaurantName;
-        private View img;
+       // private View img;
 
 
         public ViewHolder(View view){
             super(view);
-            restaurantName = view.findViewById(R.id.textview_);
+            restaurantName = view.findViewById(R.id.liste_restaurant);
 
         }
 
