@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView(){
         dialog.setMessage("Building the view...");
 
-
+        dialog.dismiss();
     }
 
     private class fetchURLTask extends AsyncTask<String, Void, String> {
