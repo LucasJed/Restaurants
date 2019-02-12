@@ -30,5 +30,21 @@ public class Restaurant {
 
     }
 
+    public int getId(){
+        return id;
+    }
+    public String getName(){ return name; }
+    public String getAddress(){ return address; }
+    public String getZip_code(){ return zip_code; }
+    public String getCity(){ return city; }
+    public String getCountry(){ return country; }
+    public String getPhone_number(){ return phone_number; }
+    public Float getLongitude(){ return longitude; }
+    public Float getLattitude(){ return lattitude; }
+    public String getLogo(){ return logo; }
+    public String getCover(){ return cover; }
+    public String getDescription(){ return description; }
+
+
 
 }
