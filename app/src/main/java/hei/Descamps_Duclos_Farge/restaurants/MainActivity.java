@@ -41,23 +41,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = findViewById(R.id.liste_restaurant);
-        List<String> stringList = new ArrayList<>();
-        for (int i = 0; i < restaurantList.size(); i++) {
-            stringList.add(restaurantList.get(i).getName());
-        }
+        new fetchURLTask().execute(getString(R.string.dataset));
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.layout_item_simple, R.id.myTextView, stringList);
-        listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "On a clique sur " + position, Toast.LENGTH_LONG).show();
-
-            }
-        });
 
     }
 
@@ -86,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 cover = jsonObject.getString("cover");
                 description = jsonObject.getString("description");
                 restaurantList.add(new Restaurant(id,name,address,zipCode,city,country,phoneNumber,longitude,lattitude,logo,cover,description));
+                System.out.println("ok");
             }
             static_restaurantList = restaurantList;
             initView();
@@ -99,7 +86,24 @@ public class MainActivity extends AppCompatActivity {
     private void initView(){
         dialog.setMessage("Building the view...");
 
-        dialog.dismiss();
+        ListView listView = findViewById(R.id.liste_restaurant);
+        List<String> stringList = new ArrayList<>();
+        for (int i = 0; i < restaurantList.size(); i++) {
+            stringList.add(restaurantList.get(i).getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
+        //ArrayAdapter<String> adapter1= new ArrayAdapter<>(this,R.layout.layout_item_simple, R.id.myTextView,stringList);listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "On a clique sur " + position, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
     }
 
     private class fetchURLTask extends AsyncTask<String, Void, String> {

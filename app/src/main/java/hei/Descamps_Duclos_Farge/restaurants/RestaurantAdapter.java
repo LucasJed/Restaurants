@@ -24,7 +24,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
         Restaurant restaurant = restaurantList.get(position);
-       // holder.favoriteColor.setBackgroundColor(restaurant.getFavoriteColor());
+        // holder.favoriteColor.setBackgroundColor(restaurant.getFavoriteColor());
         //holder.firstname.setText(restaurant.getFirstname());
         //holder.lastname.setText(restaurant.getLastname());
         holder.restaurantName.setText(restaurant.getName());

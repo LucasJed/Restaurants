@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dataset">https://www.bettercalldave.io/hei/restaurants.json</string>
+</resources>
