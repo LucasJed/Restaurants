@@ -47,7 +47,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         public ViewHolder(View view){
             super(view);
             img = view.findViewById(R.id.view_favoriteColor);
-            restaurantName = view.findViewById(R.id.textview_lastname);
+            restaurantName = view.findViewById(R.id.textview_);
 
         }
 
