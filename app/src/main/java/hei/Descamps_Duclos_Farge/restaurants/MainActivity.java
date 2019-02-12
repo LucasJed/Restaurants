@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void buildRestaurantList(String data) {
-        dialog.setMessage("Build Persons list...");
+        dialog.setMessage("Build restaurants list...");
         restaurantList = new ArrayList<>();
         int id;
         String name, address, zipCode, city, country, phoneNumber, logo, cover, description;
@@ -86,9 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         dialog.setMessage("Téléchargement...");
-
         setContentView(R.layout.activity_main);
-
         ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
         for (int i = 0; i < restaurantList.size(); i++) {
@@ -104,31 +102,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent myIntent = new Intent(view.getContext(), Main2Activity.class);
+                String str=restaurantList.get((int) id).toString();
+                myIntent.putExtra("restaurant",str);
                 startActivityForResult(myIntent, position);
-                //Intent firstIntent = new Intent(view.getContext(), Restaurant.class);
-                //startActivity(firstIntent);
-
-                // Intent intent = new Intent(this, Main2Activity.class);
-                //startActivity(intent);
-                //   Toast.makeText(MainActivity.this,"On a clique sur " + position,Toast.LENGTH_LONG).show();
 
             }
         });
 
-
-        /*
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(),ApkInfoActivity.class);
-                intent.putExtra("name",classes[i]);
-                startActivity(intent);
-
-
-            }
-        });
-
-    }*/
 
         dialog.dismiss();
 
