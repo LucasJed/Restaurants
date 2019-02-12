@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         Long longitude,lattitude;
 
         try {
-
             JSONArray jsonArray = new JSONArray(data);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);

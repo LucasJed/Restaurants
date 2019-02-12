@@ -17,7 +17,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_complexe, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_simple, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,11 +46,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
         public ViewHolder(View view){
             super(view);
-            img = view.findViewById(R.id.view_favoriteColor);
             restaurantName = view.findViewById(R.id.textview_);
 
         }
 
     }
 }
-}
+
