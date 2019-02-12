@@ -1,7 +1,10 @@
 package hei.Descamps_Duclos_Farge.restaurants;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +30,10 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String TAG = "MainActivity";
     private ProgressDialog dialog;
+    private List<Restaurant> restaurantList;
+    public static  List<Restaurant> static_restaurantList;
 
 
     @Override
@@ -49,6 +58,48 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+    private void buildRestaurantList(String data){
+        dialog.setMessage("Build Persons list...");
+        restaurantList = new ArrayList<>();
+        int id;
+        String name,address,zipCode,city,country,phoneNumber,logo,cover,description;
+        Long longitude,lattitude;
+
+        try {
+
+            JSONArray jsonArray = new JSONArray(data);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                id =  jsonObject.getInt("id");
+                name = jsonObject.getString("name");
+                address = jsonObject.getString("address");
+                zipCode = jsonObject.getString("zip_code");
+                city = jsonObject.getString("city");
+                country = jsonObject.getString("contry");
+                phoneNumber = jsonObject.getString("phone_number");
+                longitude = jsonObject.getLong("longitude");
+                lattitude = jsonObject.getLong("lattitude");
+                logo = jsonObject.getString("logo");
+                cover = jsonObject.getString("cover");
+                description = jsonObject.getString("description");
+                restaurantList.add(new Restaurant(id,name,address,zipCode,city,country,phoneNumber,longitude,lattitude,logo,cover,description));
+            }
+            static_restaurantList = restaurantList;
+            initView();
+
+
+        } catch (Throwable t) {
+            Log.e(TAG, "Could not parse malformed JSON: \"" + data + "\"");
+        }
+    }
+
+    private void initView(){
+        dialog.setMessage("Building the view...");
+
 
     }
 
@@ -78,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             Log.d(TAG, "onPostExecute");
             super.onPostExecute(result);
-            buildPersonList(result);
+            buildRestaurantList(result);
         }
     }
 

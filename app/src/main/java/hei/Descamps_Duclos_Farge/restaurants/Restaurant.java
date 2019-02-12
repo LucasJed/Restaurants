@@ -8,13 +8,13 @@ public class Restaurant {
     private String city;
     private String country;
     private String phone_number;
-    private float longitude;
-    private float lattitude;
+    private long longitude;
+    private long lattitude;
     private String logo;
     private String cover;
     private String description;
 
-    public Restaurant(int _id, String _name,String _address, String _zipCode, String _city,String _country, String _phoneNumber, float _longitude, float _lattitude, String _logo, String _cover, String _description) {
+    public Restaurant(int _id, String _name,String _address, String _zipCode, String _city,String _country, String _phoneNumber, long _longitude, long _lattitude, String _logo, String _cover, String _description) {
         id = _id;
         name=_name;
         address=_address;
@@ -39,8 +39,8 @@ public class Restaurant {
     public String getCity(){ return city; }
     public String getCountry(){ return country; }
     public String getPhone_number(){ return phone_number; }
-    public Float getLongitude(){ return longitude; }
-    public Float getLattitude(){ return lattitude; }
+    public Long getLongitude(){ return longitude; }
+    public Long getLattitude(){ return lattitude; }
     public String getLogo(){ return logo; }
     public String getCover(){ return cover; }
     public String getDescription(){ return description; }
