@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         new fetchURLTask().execute(getString(R.string.dataset));
 
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView(){
         dialog.setMessage("Building the view...");
+/*
 
         ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
@@ -101,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "On a clique sur " + position, Toast.LENGTH_LONG).show();
 
             }
-        });
+        }); */
 
 
     }
