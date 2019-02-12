@@ -86,25 +86,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        dialog.setMessage("Building the view...");
-/*
+        dialog.setMessage("Téléchargement...");
+
+        setContentView(R.layout.activity_main);
 
         ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
-        for (int i = 0; i < restaurantList.size(); i++) {
+        for(int i=0 ; i < restaurantList.size() ; i++){
             stringList.add(restaurantList.get(i).getName());
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
-        //ArrayAdapter<String> adapter1= new ArrayAdapter<>(this,R.layout.layout_item_simple, R.id.myTextView,stringList);listView.setAdapter(adapter);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.layout_item_simple,R.id.myTextView,stringList);
+        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "On a clique sur " + position, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"On a clique sur " + position,Toast.LENGTH_LONG).show();
 
             }
-        }); */
+        });
+
+        dialog.dismiss();
+
 
 
     }
