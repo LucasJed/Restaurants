@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private ProgressDialog dialog;
     private List<Restaurant> restaurantList;
-    public static  List<Restaurant> static_restaurantList;
+    public static List<Restaurant> static_restaurantList;
 
 
     @Override
@@ -46,22 +46,21 @@ public class MainActivity extends AppCompatActivity {
         new fetchURLTask().execute(getString(R.string.dataset));
 
 
-
     }
 
 
-    private void buildRestaurantList(String data){
+    private void buildRestaurantList(String data) {
         dialog.setMessage("Build Persons list...");
         restaurantList = new ArrayList<>();
         int id;
-        String name,address,zipCode,city,country,phoneNumber,logo,cover,description;
-        Long longitude,lattitude;
+        String name, address, zipCode, city, country, phoneNumber, logo, cover, description;
+        Long longitude, lattitude;
 
         try {
             JSONArray jsonArray = new JSONArray(data);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                id =  jsonObject.getInt("id");
+                id = jsonObject.getInt("id");
                 name = jsonObject.getString("name");
                 address = jsonObject.getString("address");
                 zipCode = jsonObject.getString("zip_code");
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 logo = jsonObject.getString("logo");
                 cover = jsonObject.getString("cover");
                 description = jsonObject.getString("description");
-                restaurantList.add(new Restaurant(id,name,address,zipCode,city,country,phoneNumber,longitude,lattitude,logo,cover,description));
+                restaurantList.add(new Restaurant(id, name, address, zipCode, city, country, phoneNumber, longitude, lattitude, logo, cover, description));
                 System.out.println("ok");
             }
             static_restaurantList = restaurantList;
@@ -85,31 +84,53 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initView(){
+    private void initView() {
         dialog.setMessage("Téléchargement...");
 
         setContentView(R.layout.activity_main);
 
         ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
-        for(int i=0 ; i < restaurantList.size() ; i++){
+        for (int i = 0; i < restaurantList.size(); i++) {
             stringList.add(restaurantList.get(i).getName());
         }
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.layout_item_simple,R.id.myTextView,stringList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.layout_item_simple, R.id.myTextView, stringList);
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this,"On a clique sur " + position,Toast.LENGTH_LONG).show();
+
+                Intent myIntent = new Intent(view.getContext(), Main2Activity.class);
+                startActivityForResult(myIntent, position);
+                //Intent firstIntent = new Intent(view.getContext(), Restaurant.class);
+                //startActivity(firstIntent);
+
+                // Intent intent = new Intent(this, Main2Activity.class);
+                //startActivity(intent);
+                //   Toast.makeText(MainActivity.this,"On a clique sur " + position,Toast.LENGTH_LONG).show();
 
             }
         });
 
-        dialog.dismiss();
 
+        /*
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(),ApkInfoActivity.class);
+                intent.putExtra("name",classes[i]);
+                startActivity(intent);
+
+
+            }
+        });
+
+    }*/
+
+        dialog.dismiss();
 
 
     }
