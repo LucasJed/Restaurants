@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < restaurantList.size(); i++) {
             stringList.add(restaurantList.get(i).getName());
         }
 
