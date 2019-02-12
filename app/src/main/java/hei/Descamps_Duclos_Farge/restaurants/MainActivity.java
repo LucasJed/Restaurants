@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.liste_restaurant);
         List<String> stringList = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
-            stringList.add("Element " + i);
+            stringList.add(restaurantList.get(i).getName());
         }
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
